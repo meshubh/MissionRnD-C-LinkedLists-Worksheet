@@ -6,7 +6,7 @@ INPUTS:  A number.
 
 OUTPUT: Create linked list from given number, each digit as a node.
 
-ERROR CASES: 
+ERROR CASES:
 
 NOTES: For negative numbers ignore negative sign.
 */
@@ -19,6 +19,27 @@ struct node {
 	struct node *next;
 };
 
-struct node * numberToLinkedList(int N) {
-	return NULL;
+struct node * numberToLinkedList(int N)
+{
+
+	struct node *link = (struct node *) malloc(sizeof(struct node));
+	struct node *head = NULL;
+	if (N<0)
+		N = N*-1;
+	else if (N == 0)
+	{
+		link->num = 0;
+		link->next = NULL;
+		return link;
+	}
+	while (N>0)
+	{
+		struct node *link = (struct node *) malloc(sizeof(struct node));
+		link->num = N % 10;
+		N = N / 10;
+		link->next = head;
+		head = link;
+	}
+	link = head;
+	return link;
 }
